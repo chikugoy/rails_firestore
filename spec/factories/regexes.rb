@@ -1,5 +1,5 @@
-FactoryBot.define do
-  factory :regex do
-    title { 'title' }
-  end
-end
+# FactoryBot.define do
+#   factory :regex do
+#     title { 'title' }
+#   end
+# end

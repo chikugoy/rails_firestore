@@ -18,8 +18,8 @@ Rack version              2.2.4
 
 ```shell
 docker-compose build
-docker-compose run rails_firestore_web rails db:create
-docker-compose run rails_firestore_web rake db:migrate
+#docker-compose run rails_firestore_web rails db:create
+#docker-compose run rails_firestore_web rake db:migrate
 docker-compose up -d
 ```
 
@@ -52,4 +52,3 @@ root@328d6705d4cf:/opt/workspace# firebase emulators:start
 docker-compose exec rails_firestore_web bash
 bundle exec rspec
 ```
-
