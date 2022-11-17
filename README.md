@@ -25,6 +25,9 @@ docker-compose up -d
 
 ### Firebase setup
 
+- setting `config/firebase/service_account.json`
+  - see https://firebase.google.com/docs/firestore/quickstart#set_up_your_development_environment
+
 ```shell
 $ docker-compose exec rails_firestore_firebase bash
 root@328d6705d4cf:/opt/workspace# firebase login --no-localhost
