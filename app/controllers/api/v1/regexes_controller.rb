@@ -4,44 +4,56 @@ module Api
       before_action :set_regex, only: [:show, :update, :destroy]
 
       def index
-        regexes = Regex.order(created_at: :desc)
+        regexes = Regex.find_by(query_params)
         render json: { status: 'SUCCESS', message: 'Loaded regexes', data: regexes }
       end
 
       def show
-        render json: { status: 'SUCCESS', message: 'Loaded the regex', data: @regex }
+        render json: { status: 'SUCCESS', message: 'Loaded the regex', data: @regex.attributes }
       end
 
       def create
-        regex = Regex.new(regex_params)
-        if regex.save
-          render json: { status: 'SUCCESS', data: regex }
+        if regex_params[:id]
+          regex = Regex.create_by_id(regex_params.to_h)
         else
-          render json: { status: 'ERROR', data: regex.errors }
+          regex = Regex.create(regex_params.to_h)
+        end
+
+        if regex.valid?
+          render json: { status: 'SUCCESS', data: regex.attributes }
+        else
+          render json: { status: 'ERROR', message: 'Not created', data: regex.errors.full_messages }, status: :bad_request
         end
       end
 
       def destroy
-        @regex.destroy
-        render json: { status: 'SUCCESS', message: 'Deleted the regex', data: @regex }
+        @regex.delete
+        render json: { status: 'SUCCESS', message: 'Deleted the regex', data: {} }
       end
 
       def update
-        if @regex.update(regex_params)
-          render json: { status: 'SUCCESS', message: 'Updated the regex', data: @regex }
+        if @regex.save(regex_params.to_h)
+          render json: { status: 'SUCCESS', message: 'Updated the regex', data: @regex.attributes }
         else
-          render json: { status: 'SUCCESS', message: 'Not updated', data: @regex.errors }
+          render json: { status: 'SUCCESS', message: 'Not updated', data: @regex.errors.full_messages  }, status: :bad_request
         end
       end
 
       private
 
       def set_regex
-        @regex = Regex.find(params[:id])
+        @regex = Regex.find_row(params[:id])
       end
 
       def regex_params
-        params.require(:regex).permit(:title)
+        params.permit(:id, :text)
+      end
+
+      def query_params
+        query = {}
+        query[:id] = params[:id] unless params[:id].blank?
+        query[:text] = params[:text] unless params[:text].blank?
+        query
       end
     end
   end

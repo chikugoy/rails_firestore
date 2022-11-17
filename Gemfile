@@ -77,3 +77,7 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+gem 'google-cloud-firestore'
+
+gem 'rails-i18n'
