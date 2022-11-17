@@ -1,6 +1,7 @@
 # README
 
-rails api for docker
+rails api for docker  
+use firestore local emulator
 
 ### Ruby and rails info
 
@@ -22,13 +23,30 @@ docker-compose run rails_firestore_web rake db:migrate
 docker-compose up -d
 ```
 
+### Firebase setup
+
+```shell
+$ docker-compose exec rails_firestore_firebase bash
+root@328d6705d4cf:/opt/workspace# firebase login --no-localhost
+root@328d6705d4cf:/opt/workspace# firebase init
+root@328d6705d4cf:/opt/workspace# firebase emulators:start
+```
+
+- notes
+  - https://github.com/firebase/firebase-tools/issues/4254
+
 ### Check it works
   
-`http://localhost:3000/api/v1/regexes`
+- api
+  - `http://localhost:3000/api/v1/regexes`
+- firestore
+  - `http://127.0.0.1:4000/firestore`
+
 
 ### Rspec execute
 
 ```shell
-docker exec -it rails_firestore_rails_firestore_web_1 bash
+docker-compose exec rails_firestore_web bash
 bundle exec rspec
 ```
+
