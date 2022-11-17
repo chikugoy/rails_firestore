@@ -50,5 +50,5 @@ services:
     working_dir: /opt/workspace
     networks:
       - backend
-    command: bash
+    command: bash -c "firebase emulators:start"
     tty: true
