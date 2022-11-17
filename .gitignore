@@ -30,4 +30,16 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
+# Ignore firebase
+/firebase/bin/*
+/firebase/config/*
+/firebase/emulators/*
+!/firebase/emulators/firebase.json
+!/firebase/emulators/firestore.indexes.json
+!/firebase/emulators/firestore.rules
+!/firebase/emulators/storage.rules
+
 .idea/*
+
+config/firebase/service_account.json
+

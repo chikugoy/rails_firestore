@@ -15,7 +15,7 @@ COPY . /myapp
 RUN gem update --system ${RUBYGEMS_VERSION} && \
     bundle install
 
-COPY docker/entrypoint.sh /usr/bin/
+COPY docker/web/entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
 
