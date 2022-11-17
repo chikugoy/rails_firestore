@@ -5,7 +5,11 @@ module Api
 
       def index
         regexes = Regex.find_by(query_params)
-        render json: { status: 'SUCCESS', message: 'Loaded regexes', data: regexes }
+        render json: {
+          status: 'SUCCESS',
+          message: 'Loaded regexes',
+          data: regexes.map { |regex| regex.attributes }
+        }
       end
 
       def show

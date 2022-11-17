@@ -35,7 +35,7 @@ RSpec.describe "Regexes", type: :request do
       expect(response.status).to eq(200)
 
       expect(json['data'].length).to eq(1)
-      expect(json['data'][0]['attributes']['text']).to eq('test_regex_text_1')
+      expect(json['data'][0]['text']).to eq('test_regex_text_1')
     end
 
     it 'where id = *' do
@@ -45,7 +45,7 @@ RSpec.describe "Regexes", type: :request do
       expect(response.status).to eq(200)
 
       expect(json['data'].length).to eq(1)
-      expect(json['data'][0]['attributes']['id']).to eq('test_regex_id_2')
+      expect(json['data'][0]['id']).to eq('test_regex_id_2')
     end
   end
 
